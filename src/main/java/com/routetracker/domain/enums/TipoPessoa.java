@@ -1,14 +1,12 @@
 package com.routetracker.domain.enums;
 
-public enum StatusUsuario {
-    ATIVO("Ativo"),
-    PENDENTE("Pendente"),
-    SUSPENSO("Suspenso"),
-    BLOQUEADO("Bloqueado");
+public enum TipoPessoa {
+    ADMIN("Admin"),
+    MOTORISTA("Motorista");
 
     private final String descricao;
 
-    StatusUsuario(String descricao){
+    TipoPessoa(String descricao) {
         this.descricao = descricao;
     }
 

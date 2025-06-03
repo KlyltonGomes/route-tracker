@@ -1,6 +1,5 @@
 package com.routetracker;
 
-import com.routetracker.domain.enums.StatusUsuario;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
