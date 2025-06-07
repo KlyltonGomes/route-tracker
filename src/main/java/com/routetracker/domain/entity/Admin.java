@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,8 +26,8 @@ public class Admin  extends Pessoa {
     @Column(name = "FimAssinatura")
     private LocalDate dataFimAssinatura;
 
-    @OneToMany(mappedBy = "admin")
-    private List<Motorista> motoristas;
+    @OneToMany(mappedBy = "adminResponsavel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Motorista> motoristas = new ArrayList<>();
 
     @Override
     public Long getId() {

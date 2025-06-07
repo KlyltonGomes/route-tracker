@@ -1,5 +1,6 @@
 package com.routetracker.service;
 
+import com.routetracker.domain.entity.Admin;
 import com.routetracker.domain.entity.Plano;
 import com.routetracker.repository.PlanoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,9 @@ public class PlanoService {
     public void excluirPlano(Long id) {
         planoRepository.deleteById(id);
     }
+    public boolean podeAdicionarMotorista(Admin admin) {
+        int totalMotoristas = admin.getMotoristas().size(); // ou contar no banco
+        return totalMotoristas < admin.getPlanoAtual().getLimiteMotoristas();
+    }
+
 }

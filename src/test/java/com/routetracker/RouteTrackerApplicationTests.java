@@ -74,10 +74,10 @@ class RouteTrackerApplicationTests {
 		u.setAcessos(List.of(a));
 		u = usuarioRepository.save(u);
 
+
+
 		m = pessoaRepository.save(m);
 
-
 	}
-
 }
 
