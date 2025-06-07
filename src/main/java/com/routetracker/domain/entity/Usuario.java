@@ -26,7 +26,7 @@ public class Usuario implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Acesso> acessos;
 
-    @OneToOne
+    @OneToOne(optional = true)
     private Pessoa pessoa;
 
     /* Autoridades = são os acesso, ou seja ROLE_ADMIN, ROLE_SECRETARIO,ROLE_FINANCEIRO*/
@@ -45,6 +45,45 @@ public class Usuario implements UserDetails {
         return this.email;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public List<Acesso> getAcessos() {
+        return acessos;
+    }
+
+    public void setAcessos(List<Acesso> acessos) {
+        this.acessos = acessos;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
     /*
     Tradução: A conta não expirou?
     Explicação: Indica se a conta do usuário ainda é válida no tempo, ou seja, se não foi desativada automaticamente por expiração.
@@ -80,7 +119,7 @@ public class Usuario implements UserDetails {
      */
     @Override
     public boolean isEnabled() {
-        return pessoa.getStatus() != StatusPessoa.ATIVO;
+        return pessoa.getStatus() == StatusPessoa.ATIVO;
     }
 
     @Override

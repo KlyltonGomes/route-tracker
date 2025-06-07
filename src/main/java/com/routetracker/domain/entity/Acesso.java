@@ -21,7 +21,7 @@ public class Acesso implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return this.descricao.getDescricao();
+        return this.descricao.getRoleNome();
     }
 
     public Long getId() {

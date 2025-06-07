@@ -1,6 +1,6 @@
 package com.routetracker.domain.enums;
 
-public enum TipoConvite {
+public enum StatusConvite {
 
     ENVIADO("Convite Enviado"),
     ACEITO("Convite Aceito"),
@@ -9,7 +9,7 @@ public enum TipoConvite {
 
     private final String descricao;
 
-    TipoConvite(String descricao){
+    StatusConvite(String descricao){
         this.descricao = descricao;
     }
 

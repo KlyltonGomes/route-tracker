@@ -14,4 +14,10 @@ public enum Role {
         return descricao;
     }
 
+    public String getRoleNome(){
+        return this.name();// Retorna "ROLE_ADMIN" ou "ROLE_MOTORISTA"
+    }
+
+
+
 }

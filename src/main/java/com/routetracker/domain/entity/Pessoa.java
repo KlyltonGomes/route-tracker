@@ -1,5 +1,6 @@
 package com.routetracker.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.routetracker.domain.enums.StatusPessoa;
 import com.routetracker.domain.enums.TipoDocumento;
 import com.routetracker.domain.enums.TipoPessoa;
@@ -11,7 +12,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "pessoa")
 @SequenceGenerator(name = "seq_pessoa", sequenceName = "seq_pessoa", allocationSize = 1, initialValue = 1)
-public class Pessoa implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED) // Tabelas separadas com JOIN
+public abstract class  Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,12 +27,7 @@ public class Pessoa implements Serializable {
     @Column(nullable = false)
     private String telefone;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String senha;
-
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "data_criacao", nullable = false)
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
@@ -39,7 +36,7 @@ public class Pessoa implements Serializable {
     private StatusPessoa status;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_pessoa", nullable = false)
+    @Column(name = "tipo_pessoa")
     private TipoPessoa tipoPessoa;
 
     @Column(nullable = false)
@@ -47,9 +44,9 @@ public class Pessoa implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_documento", nullable = false)
-    private TipoDocumento documento;
+    private TipoDocumento tipoDocumento;
 
-    @Column(name = "numero_documento", nullable = false, unique = true)
+    @Column(name = "numero_documento" )
     private String numeroDocumento;
 
     public Long getId() {
@@ -74,22 +71,6 @@ public class Pessoa implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public LocalDateTime getDataCriacao() {
@@ -124,12 +105,12 @@ public class Pessoa implements Serializable {
         this.ativo = ativo;
     }
 
-    public TipoDocumento getDocumento() {
-        return documento;
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setDocumento(TipoDocumento documento) {
-        this.documento = documento;
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
     public String getNumeroDocumento() {
@@ -139,6 +120,7 @@ public class Pessoa implements Serializable {
     public void setNumeroDocumento(String numeroDocumento) {
         this.numeroDocumento = numeroDocumento;
     }
+
 
     @Override
     public boolean equals(Object o) {
