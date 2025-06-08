@@ -45,7 +45,6 @@ class RouteTrackerApplicationTests {
 	@Autowired
 	private AcessoRepositoy acessoRepositoy;
 
-
 	@Test
 	void testeRelacionamento() {
 

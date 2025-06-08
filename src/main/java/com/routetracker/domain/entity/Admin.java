@@ -29,6 +29,9 @@ public class Admin  extends Pessoa {
     @OneToMany(mappedBy = "adminResponsavel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Motorista> motoristas = new ArrayList<>();
 
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Convite> convites = new ArrayList<>();
+
     @Override
     public Long getId() {
         return id;
@@ -69,5 +72,13 @@ public class Admin  extends Pessoa {
 
     public void setMotoristas(List<Motorista> motoristas) {
         this.motoristas = motoristas;
+    }
+
+    public List<Convite> getConvites() {
+        return convites;
+    }
+
+    public void setConvites(List<Convite> convites) {
+        this.convites = convites;
     }
 }
